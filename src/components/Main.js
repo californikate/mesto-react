@@ -29,7 +29,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         <section className="profile" aria-label="профиль">
           <div className="profile__info">
             <button onClick={onEditAvatar} type="button" className="profile__avatar-button button" aria-label="редактировать аватар">
-              <img style={{ backgroundImage: `url(${userAvatar})` }} className="profile__avatar" alt="аватар пользователя." />
+              <img src={userAvatar} className="profile__avatar" alt="аватар пользователя." />
             </button>
             <div className="profile__container">
               <div className="profile__name">
@@ -42,8 +42,9 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
           <button onClick={onAddPlace} type="button" className="profile__add-button button" aria-label="добавить новую карточку" />
         </section>
         <section className="elements" aria-label="карточки мест">
-          <ul className="elements__items" />
+          <ul className="elements__items">
           {cards.map((card) => (<Card key={card._id} card={card} onCardClick={onCardClick} />))}
+          </ul>
         </section>
       </main>
   )

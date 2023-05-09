@@ -41,21 +41,24 @@ function App() {
   }
 
   return (
-    <>
-      <Header />
-      <Main 
-        onEditAvatar={ handleEditAvatarClick }
-        onEditProfile={ handleEditProfileClick }
-        onAddPlace={ handleAddPlaceClick }
-        onCardClick={handleCardClick}
-      />
-      <Footer />
-      <PopupEditProfile isOpen={ isEditProfilePopupOpen } onClose={ closeAllPopups }/>
-      <PopupEditAvatar isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups }/>
-      <PopupAddPlace isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups }/>
-      <PopupDeleteConfirm />
-      <PopupImage card={selectedCard} onClose={closeAllPopups}/>
-    </>
+    <div className="root">
+      <div className="page">
+        <Header />
+        <Main 
+          onEditAvatar={ handleEditAvatarClick }
+          onEditProfile={ handleEditProfileClick }
+          onAddPlace={ handleAddPlaceClick }
+          onCardClick={handleCardClick}
+        />
+        <Footer />
+        <PopupEditProfile isOpen={ isEditProfilePopupOpen } onClose={ closeAllPopups }/>
+        <PopupEditAvatar isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups }/>
+        <PopupAddPlace isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups }/>
+        <PopupDeleteConfirm />
+        <PopupImage card={selectedCard} onClose={closeAllPopups}/>
+      </div>
+    </div>
+    
   );
 }
 
