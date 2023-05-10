@@ -7,7 +7,7 @@ function PopupEditProfile({ isOpen, onClose }) {
       isOpen={ isOpen }
       onClose= { onClose }
       name="edit"
-      title="Редактиовать профиль"
+      title="Редактировать профиль"
       buttonText="Сохранить"
     >
       <input 

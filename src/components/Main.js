@@ -43,7 +43,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         </section>
         <section className="elements" aria-label="карточки мест">
           <ul className="elements__items">
-          {cards.map((card) => (<Card key={card._id} card={card} onCardClick={onCardClick} />))}
+          {cards.map((card) => (<Card card={card} key={card._id} onCardClick={onCardClick} />))}
           </ul>
         </section>
       </main>

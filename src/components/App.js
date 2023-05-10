@@ -8,15 +8,11 @@ import PopupAddPlace from './PopupAddPlace';
 import PopupDeleteConfirm from './PopupDeleteConfirm';
 import PopupImage from './PopupImage';
 
-
-
-
-
 function App() {
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({ link: '', name: '' });
+  const [selectedCard, setSelectedCard] = useState(null);
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -38,7 +34,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({ link: '', name: '' })
+    setSelectedCard(null)
   }
 
   return (
@@ -49,14 +45,14 @@ function App() {
           onEditAvatar={ handleEditAvatarClick }
           onEditProfile={ handleEditProfileClick }
           onAddPlace={ handleAddPlaceClick }
-          onCardClick={handleCardClick}
+          onCardClick={ handleCardClick }
         />
         <Footer />
         <PopupEditProfile isOpen={ isEditProfilePopupOpen } onClose={ closeAllPopups }/>
         <PopupEditAvatar isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups }/>
         <PopupAddPlace isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups }/>
         <PopupDeleteConfirm />
-        <PopupImage card={selectedCard} onClose={closeAllPopups}/>
+        <PopupImage card={ selectedCard } onClose={ closeAllPopups }/>
       </div>
     </div>
     

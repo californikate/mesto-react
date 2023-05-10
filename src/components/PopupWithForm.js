@@ -11,9 +11,9 @@ function PopupWithForm({ name, isOpen, onClose, title, children, buttonText }) {
           aria-label="закрыть редактирование профиля"
         ></button>
         <form 
-          id={`form-popup-${name}`} 
+          id={`form-${name}`} 
           action="#" 
-          name={`form-popup-${name}`} 
+          name={`form-${name}`} 
           className="popup__form-element" 
           noValidate
         >
@@ -23,7 +23,9 @@ function PopupWithForm({ name, isOpen, onClose, title, children, buttonText }) {
             type="submit" 
             className="popup__save-button" 
             aria-label="сохранить изменения профиля"
-          >{buttonText}</button>
+          >
+            { buttonText }
+          </button>
         </form>
       </div>
     </div>
