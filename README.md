@@ -19,4 +19,4 @@
 
 ### Ссылка на деплой проекта Mesto React
 
-[GitHub Pages](#)
+[GitHub Pages](https://californikate.github.io/mesto-react/)
