@@ -10,7 +10,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
 
   useEffect(() => {
     api.getUserInfo()
-      .then(({name, about, avatar}) => {
+      .then(({ name, about, avatar }) => {
         setUserName(name);
         setUserDescription(about);
         setUserAvatat(avatar);
@@ -28,22 +28,43 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
     <main className="main">
         <section className="profile" aria-label="профиль">
           <div className="profile__info">
-            <button onClick={onEditAvatar} type="button" className="profile__avatar-button button" aria-label="редактировать аватар">
-              <img src={userAvatar} className="profile__avatar" alt="аватар пользователя." />
+            <button 
+              onClick={ onEditAvatar } 
+              type="button" 
+              className="profile__avatar-button button" 
+              aria-label="редактировать аватар"
+            >
+              <img src={ userAvatar } className="profile__avatar" alt="аватар пользователя." />
             </button>
             <div className="profile__container">
               <div className="profile__name">
                 <h1 className="profile__title">{ userName }</h1>
-                <button onClick={onEditProfile} type="button" className="profile__edit-button button" aria-label="редактировать профиль" />
+                <button 
+                  onClick={ onEditProfile } 
+                  type="button" 
+                  className="profile__edit-button button" 
+                  aria-label="редактировать профиль" 
+                />
               </div>
               <p className="profile__subtitle">{ userDescription }</p>
             </div>
           </div>
-          <button onClick={onAddPlace} type="button" className="profile__add-button button" aria-label="добавить новую карточку" />
+          <button 
+            onClick={ onAddPlace } 
+            type="button" 
+            className="profile__add-button button" 
+            aria-label="добавить новую карточку" 
+          />
         </section>
         <section className="elements" aria-label="карточки мест">
           <ul className="elements__items">
-          {cards.map((card) => (<Card card={card} key={card._id} onCardClick={onCardClick} />))}
+            {cards.map((card) => (
+              <Card 
+                card={ card } 
+                key={ card._id } 
+                onCardClick={ onCardClick } 
+              />
+            ))}
           </ul>
         </section>
       </main>

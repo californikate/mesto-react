@@ -8,7 +8,12 @@ function Card({ card, onCardClick }) {
   return (
     <li className="element">
       <button type="button" className="element__delete-button button" aria-label="удалить карточку" />
-      <img onClick={ handleClick } className="element__photo" style={{ backgroundImage: `url(${card.link})` }} alt={ card.name } />
+      <img 
+        onClick={ handleClick } 
+        className="element__photo" 
+        style={{ backgroundImage: `url(${card.link})` }} 
+        alt={ card.name } 
+      />
       <div className="element__info">
         <h2 className="element__title">{ card.name }</h2>
         <div>

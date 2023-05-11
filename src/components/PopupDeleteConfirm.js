@@ -7,7 +7,7 @@ function PopupDeleteConfirm() {
       name="confirm"
       title="Вы уверены?"
       buttonText="Да"
-    ></PopupWithForm>
+    />
   );
 }
 
