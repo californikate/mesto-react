@@ -6,7 +6,7 @@ import PopupEditProfile from './PopupEditProfile';
 import PopupEditAvatar from './PopupEditAvatar';
 import PopupAddPlace from './PopupAddPlace';
 import PopupDeleteConfirm from './PopupDeleteConfirm';
-import PopupImage from './PopupImage';
+import ImagePopup from './ImagePopup';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -52,7 +52,7 @@ function App() {
         <PopupEditAvatar isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups }/>
         <PopupAddPlace isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups }/>
         <PopupDeleteConfirm />
-        <PopupImage card={ selectedCard } onClose={ closeAllPopups }/>
+        <ImagePopup card={ selectedCard } onClose={ closeAllPopups }/>
       </div>
     </div>
     
