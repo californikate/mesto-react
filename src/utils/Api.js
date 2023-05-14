@@ -11,6 +11,10 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
+  _request(url, options) {
+    return fetch(url, options).then(this._getResponse)
+  }
+
   async getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers

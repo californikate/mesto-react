@@ -20,7 +20,7 @@ function PopupEditProfile({ isOpen, onClose }) {
         maxLength="40" 
         className="popup__input popup__input_type_name"
       />
-      <span id="name-input-error" className="popup__input-error"></span>
+      <span id="name-input-error" className="popup__input-error" />
       <input 
         type="text" 
         name="about" 
@@ -31,7 +31,7 @@ function PopupEditProfile({ isOpen, onClose }) {
         maxLength="200"
         className="popup__input popup__input_type_job"
       />
-      <span id="job-input-error" className="popup__input-error"></span>
+      <span id="job-input-error" className="popup__input-error" />
     </PopupWithForm>
   );
 }

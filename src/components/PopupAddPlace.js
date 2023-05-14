@@ -20,7 +20,7 @@ function PopupAddPlace({ isOpen, onClose }) {
         maxLength="30" 
         className="popup__input popup__input_type_place"
       />
-      <span id="place-input-error" className="popup__input-error"></span>
+      <span id="place-input-error" className="popup__input-error" />
       <input 
         type="url" 
         name="link" 
@@ -29,7 +29,7 @@ function PopupAddPlace({ isOpen, onClose }) {
         required
         className="popup__input popup__input_type_url"
       />
-      <span id="url-input-error" className="popup__input-error"></span>
+      <span id="url-input-error" className="popup__input-error" />
     </PopupWithForm>
   );
 }

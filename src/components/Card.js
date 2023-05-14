@@ -11,7 +11,7 @@ function Card({ card, onCardClick }) {
       <img 
         onClick={ handleClick } 
         className="element__photo" 
-        style={{ backgroundImage: `url(${card.link})` }} 
+        src={ card.link }
         alt={ card.name } 
       />
       <div className="element__info">

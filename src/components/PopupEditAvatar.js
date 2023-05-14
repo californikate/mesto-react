@@ -18,7 +18,7 @@ function PopupEditAvatar({ isOpen, onClose }) {
         required 
         className="popup__input popup__input_type_place"
       />
-      <span id="avatar-input-error" className="popup__input-error"></span>
+      <span id="avatar-input-error" className="popup__input-error" />
     </PopupWithForm>
   );
 }

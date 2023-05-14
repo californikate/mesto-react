@@ -9,13 +9,13 @@ function PopupWithForm({ name, isOpen, onClose, title, children, buttonText }) {
           type="button" 
           className="popup__close-button button" 
           aria-label="закрыть редактирование профиля"
-        ></button>
+        />
         <form 
           id={`form-${name}`} 
           action="#" 
           name={`form-${name}`} 
           className="popup__form-element" 
-          noValidate
+          //noValidate
         >
           <h2 className="popup__title">{ title }</h2>
           { children }
