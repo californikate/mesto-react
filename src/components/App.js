@@ -4,7 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
-import PopupEditAvatar from './PopupEditAvatar';
+import EditAvatarPopup from './EditAvatarPopup';
 import PopupAddPlace from './PopupAddPlace';
 import PopupDeleteConfirm from './PopupDeleteConfirm';
 import ImagePopup from './ImagePopup';
@@ -15,7 +15,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState({ name: '', about: '', avatar: '', _id: '' });
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -83,6 +83,15 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleUpdateAvatar(item) {
+    api.setUserAvatar(item)
+      .then((user) => {
+        setCurrentUser(user)
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <CurrenUserContext.Provider value={currentUser}>
       <div className="root">
@@ -99,7 +108,7 @@ function App() {
           />
           <Footer />
           <EditProfilePopup isOpen={ isEditProfilePopupOpen } onClose={ closeAllPopups } onUpdateUser={ handleUpdateUser }/>
-          <PopupEditAvatar isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups } />
+          <EditAvatarPopup isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups } onUpdateAvatar={ handleUpdateAvatar }/>
           <PopupAddPlace isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups }/>
           <PopupDeleteConfirm />
           <ImagePopup card={ selectedCard } onClose={ closeAllPopups }/>

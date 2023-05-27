@@ -43,7 +43,7 @@ useEffect(() => {
       buttonText="Сохранить"
     >
       <input 
-        value={ name }
+        value={ name || '' }
         onChange={ handleNameChange }
         type="text" 
         name="name" 
@@ -56,7 +56,7 @@ useEffect(() => {
       />
       <span id="name-input-error" className="popup__input-error" />
       <input 
-        value={ description }
+        value={ description || '' }
         onChange={ handleDescriptionChange }
         type="text" 
         name="about" 

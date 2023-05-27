@@ -32,7 +32,7 @@ class Api {
     }).then(res => this._getResponse(res))
   }
 
-  async editUserAvatar({ avatar }) {
+  async setUserAvatar({ avatar }) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',  
       headers: this._headers,
