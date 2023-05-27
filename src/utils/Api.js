@@ -11,9 +11,9 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  _request(url, options) {
-    return fetch(url, options).then(this._getResponse)
-  }
+  // _request(urlEndpoint, options) {
+  //   return fetch(`${this.url}${urlEndpoint}`, options).then(this._getResponse)
+  // }
 
   async getUserInfo() {
     return fetch(`${this._url}/users/me`, {
@@ -21,7 +21,7 @@ class Api {
     }).then(res => this._getResponse(res))
   }
 
-  async editUserInfo({name, about}) {
+  async setUserInfo({name, about}) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -66,19 +66,26 @@ class Api {
     }).then(res => this._getResponse(res))
   }
 
-  async putLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-    method: 'PUT',  
-    headers: this._headers
+  async changeLikeCardStatus(id, isLiked) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
+      method: isLiked ? 'DELETE' : 'PUT',
+      headers: this._headers
     }).then(res => this._getResponse(res))
   }
 
-  async deleteLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-    method: 'DELETE',  
-    headers: this._headers
-    }).then(res => this._getResponse(res))
-  }
+  // async putLike(cardId) {
+  //   return fetch(`${this._url}/cards/${cardId}/likes`, {
+  //   method: 'PUT',  
+  //   headers: this._headers
+  //   }).then(res => this._getResponse(res))
+  // }
+
+  // async deleteLike(cardId) {
+  //   return fetch(`${this._url}/cards/${cardId}/likes`, {
+  //   method: 'DELETE',  
+  //   headers: this._headers
+  //   }).then(res => this._getResponse(res))
+  // }
 }
 
 export const api = new Api({

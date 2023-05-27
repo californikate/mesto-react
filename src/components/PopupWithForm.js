@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWithForm({ name, isOpen, onClose, title, children, buttonText }) {
+function PopupWithForm({ name, isOpen, onClose, title, children, buttonText, onSubmit }) {
   return (
     <div className={`popup ${name}-popup ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container">
@@ -11,6 +11,7 @@ function PopupWithForm({ name, isOpen, onClose, title, children, buttonText }) {
           aria-label="закрыть редактирование профиля"
         />
         <form 
+          onSubmit={ onSubmit }
           id={`form-${name}`} 
           action="#" 
           name={`form-${name}`} 
