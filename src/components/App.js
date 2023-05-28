@@ -17,6 +17,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({ name: '', about: '', avatar: '', _id: '' });
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     api.getInitialCards()
@@ -75,30 +76,39 @@ function App() {
   }
 
   function handleUpdateUser(items) {
+    setIsLoading(true);
+
     api.setUserInfo(items)
       .then((user) => {
         setCurrentUser(user)
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateAvatar(item) {
+    setIsLoading(true);
+
     api.setUserAvatar(item)
       .then((user) => {
         setCurrentUser(user)
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleAddPlaceSubmit(items) {
+    setIsLoading(true);
+
     api.addNewCard(items)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -116,9 +126,24 @@ function App() {
             cards={ cards }
           />
           <Footer />
-          <EditProfilePopup isOpen={ isEditProfilePopupOpen } onClose={ closeAllPopups } onUpdateUser={ handleUpdateUser }/>
-          <EditAvatarPopup isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups } onUpdateAvatar={ handleUpdateAvatar }/>
-          <AddPlacePopup isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups } onAddPlace={ handleAddPlaceSubmit }/>
+          <EditProfilePopup 
+            isOpen={ isEditProfilePopupOpen } 
+            onClose={ closeAllPopups } 
+            onUpdateUser={ handleUpdateUser }
+            isLoading={ isLoading }
+          />
+          <EditAvatarPopup 
+            isOpen={ isEditAvatarPopupOpen } 
+            onClose={ closeAllPopups } 
+            onUpdateAvatar={ handleUpdateAvatar }
+            isLoading={ isLoading }
+          />
+          <AddPlacePopup 
+            isOpen={ isAddPlacePopupOpen } 
+            onClose={ closeAllPopups } 
+            onAddPlace={ handleAddPlaceSubmit }
+            isLoading={ isLoading }
+          />
           <PopupDeleteConfirm />
           <ImagePopup card={ selectedCard } onClose={ closeAllPopups }/>
         </div>

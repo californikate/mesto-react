@@ -2,17 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrenUserContext } from "../contexts/CurrentUserContext";
 
-function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const currentUser = useContext(CurrenUserContext);
 
   // После загрузки текущего пользователя из API
-// его данные будут использованы в управляемых компонентах.
-useEffect(() => {
-  setName(currentUser.name);
-  setDescription(currentUser.about);
-}, [currentUser]); 
+  // его данные будут использованы в управляемых компонентах.
+  useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser, isOpen]); 
 
   // Обработчики изменения инпута обновляют стейт
   function handleNameChange(e) {
@@ -38,9 +38,10 @@ useEffect(() => {
       isOpen={ isOpen }
       onClose= { onClose }
       onSubmit={ handleSubmit }
+      isLoading={ isLoading }
       name="edit"
       title="Редактировать профиль"
-      buttonText="Сохранить"
+      buttonText={ isLoading ? 'Сохранение...' : 'Сохранить'}
     >
       <input 
         value={ name || '' }
