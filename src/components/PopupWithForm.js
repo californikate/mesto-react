@@ -25,7 +25,7 @@ function PopupWithForm({
           action="#" 
           name={`form-${name}`} 
           className="popup__form-element" 
-          noValidate
+          //noValidate
         >
           <h2 className="popup__title">{ title }</h2>
           { children }

@@ -18,18 +18,43 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', about: '', avatar: '', _id: '' });
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard;
 
   useEffect(() => {
     api.getInitialCards()
       .then((cards) => setCards(cards))
       .catch((err) => console.log(err));
-  }, [])
+  }, []);
   
   useEffect(() => {
     api.getUserInfo()
-      .then((currentUser) => setCurrentUser(currentUser))
+      .then((user) => setCurrentUser(user))
       .catch((err) => console.log(err));
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    function isOverlay(e) {
+      if (e.target.classList.contains('popup_opened')) {
+        closeAllPopups();
+      }
+    }
+
+    function handleEscClose(e) {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', isOverlay);
+      document.addEventListener('keydown', handleEscClose);
+
+      return () => {
+        document.removeEventListener('mousedown', isOverlay);
+        document.removeEventListener('keydown', handleEscClose);
+      }
+    }
+  }, [isOpen]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
