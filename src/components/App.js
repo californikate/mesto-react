@@ -5,7 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
-import PopupAddPlace from './PopupAddPlace';
+import AddPlacePopup from './AddPlacePopup';
 import PopupDeleteConfirm from './PopupDeleteConfirm';
 import ImagePopup from './ImagePopup';
 import { CurrenUserContext } from '../contexts/CurrentUserContext';
@@ -92,8 +92,17 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleAddPlaceSubmit(items) {
+    api.addNewCard(items)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
-    <CurrenUserContext.Provider value={currentUser}>
+    <CurrenUserContext.Provider value={ currentUser }>
       <div className="root">
         <div className="page">
           <Header />
@@ -109,7 +118,7 @@ function App() {
           <Footer />
           <EditProfilePopup isOpen={ isEditProfilePopupOpen } onClose={ closeAllPopups } onUpdateUser={ handleUpdateUser }/>
           <EditAvatarPopup isOpen={ isEditAvatarPopupOpen } onClose={ closeAllPopups } onUpdateAvatar={ handleUpdateAvatar }/>
-          <PopupAddPlace isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups }/>
+          <AddPlacePopup isOpen={ isAddPlacePopupOpen } onClose={ closeAllPopups } onAddPlace={ handleAddPlaceSubmit }/>
           <PopupDeleteConfirm />
           <ImagePopup card={ selectedCard } onClose={ closeAllPopups }/>
         </div>

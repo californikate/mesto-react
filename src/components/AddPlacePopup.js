@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupAddPlace({ isOpen, onClose }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  const cardNameRef = useRef(null);
+  const cardLinkRef = useRef(null);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onAddPlace({
+      place: cardNameRef.current.value,
+      link: cardLinkRef.current.value,
+    });
+  }
+
+  useEffect(() => {
+    cardNameRef.current.value = '';
+    cardLinkRef.current.value = '';
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       isOpen={ isOpen }
       onClose= { onClose }
+      onSubmit={ handleSubmit }
       name="add"
       title="Новое место"
       buttonText="Создать"
     >
       <input 
+        ref={ cardNameRef }
         type="text" 
         name="place" 
         id="place-input" 
@@ -22,6 +41,7 @@ function PopupAddPlace({ isOpen, onClose }) {
       />
       <span id="place-input-error" className="popup__input-error" />
       <input 
+        ref={ cardLinkRef }
         type="url" 
         name="link" 
         id="url-input" 
@@ -34,7 +54,7 @@ function PopupAddPlace({ isOpen, onClose }) {
   );
 }
 
-export default PopupAddPlace;
+export default AddPlacePopup;
 
   // <div className="popup add-popup">
   //     <div className="popup__container">
