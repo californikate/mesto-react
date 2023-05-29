@@ -9,6 +9,7 @@ import AddPlacePopup from './AddPlacePopup';
 import PopupDeleteConfirm from './PopupDeleteConfirm';
 import ImagePopup from './ImagePopup';
 import { CurrenUserContext } from '../contexts/CurrentUserContext';
+import { useForm } from 'react-hook-form';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -19,6 +20,13 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard;
+  const {
+    register,
+    formState: {
+      errors,
+    },
+    handleSubmit,
+  } = useForm();
 
   useEffect(() => {
     api.getInitialCards()
